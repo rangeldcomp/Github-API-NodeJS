@@ -1,6 +1,6 @@
-const constants=require('./constants');
+const constants = require('./constants');
 
-const generateOptions=(_path)=>{
+const generateOptions = (_path) => {
     return options = {
         hostname: constants.hostname,
         path: _path,
@@ -11,4 +11,4 @@ const generateOptions=(_path)=>{
     }
 }
 
-module.exports ={ generateOptions }
+module.exports = { generateOptions }

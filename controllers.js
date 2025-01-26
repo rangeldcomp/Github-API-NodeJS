@@ -1,10 +1,10 @@
 const { generateOptions } = require('./utils');
 const https = require('https');
 
-const getEmojis= async function (req, res) {
+const getEmojis = async function (req, res) {
     const user = req.params.user;
     const options = generateOptions('/emojis')
-    
+
     https.get(options, function (apiResponse) {
         apiResponse.pipe(res);
     }).on('error', (e) => {
@@ -13,10 +13,10 @@ const getEmojis= async function (req, res) {
     })
 }
 
-const getUser= async function (req, res) {
+const getUser = async function (req, res) {
     const user = req.params.user;
     const options = generateOptions('/users/' + user)
-    
+
     https.get(options, function (apiResponse) {
         apiResponse.pipe(res);
     }).on('error', (e) => {
@@ -25,10 +25,10 @@ const getUser= async function (req, res) {
     })
 }
 
-const getRepo= async function (req, res) {
+const getRepo = async function (req, res) {
     const user = req.params.user;
     const reponame = req.params.reponame;
-    const options = generateOptions('/repos/' + user + '/' + reponame) 
+    const options = generateOptions(`/repos/${user}/${reponame}/issues?state=closed&labels=confirmed-bug`)
 
     https.get(options, function (apiResponse) {
         apiResponse.pipe(res);
@@ -38,7 +38,7 @@ const getRepo= async function (req, res) {
     })
 }
 
-const getCommit= async function (req, res) {
+const getCommit = async function (req, res) {
     const user = req.params.user;
     const reponame = req.params.reponame;
     const options = generateOptions('/repos/' + user + '/' + reponame + '/commits')
